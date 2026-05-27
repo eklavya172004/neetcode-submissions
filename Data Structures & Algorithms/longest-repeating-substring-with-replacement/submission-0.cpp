@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int l = 0 ;
+        int maxlen = 0;
+        int maxfreq = 0 ;
+        int n = s.size();
+        map<char,int> mp;
+ 
+        for(int r = 0 ; r < n ; r++){
+            mp[s[r] - 'A']++;
+
+            maxfreq = max(maxfreq,mp[s[r] - 'A']);
+
+            while(((r-l+1) - maxfreq) > k){
+                mp[s[l] - 'A']--;
+                l++;
+            }
+
+            maxlen = max(r-l+1,maxlen);
+        }
+
+        return maxlen;
+    }
+};
